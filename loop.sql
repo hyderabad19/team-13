@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.9
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 13, 2019 at 09:51 PM
+-- Generation Time: Jul 13, 2019 at 10:00 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -21,20 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `loop`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `available`
---
-
-CREATE TABLE `available` (
-  `aid` int(11) NOT NULL,
-  `rid` int(11) NOT NULL,
-  `fromtime` datetime NOT NULL,
-  `totime` datetime NOT NULL,
-  `isavailable` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -81,22 +67,16 @@ CREATE TABLE `schools` (
 
 CREATE TABLE `users` (
   `uid` int(11) NOT NULL,
+  `password` varchar(200) NOT NULL,
   `uname` varchar(200) NOT NULL,
-  `phone` int(10) NOT NULL,
+  `phone` varchar(10) NOT NULL,
   `email` varchar(200) NOT NULL,
-  `password` varchar(20) NOT NULL,
   `sid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `available`
---
-ALTER TABLE `available`
-  ADD PRIMARY KEY (`aid`);
 
 --
 -- Indexes for table `bookings`
@@ -121,12 +101,6 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for dumped tables
 --
-
---
--- AUTO_INCREMENT for table `available`
---
-ALTER TABLE `available`
-  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `bookings`
