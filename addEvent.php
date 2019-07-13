@@ -34,7 +34,30 @@
 </div>
 <div class="form-group">
 <label for="exampleInputEmail1">Cluster</label>
-<input type="text" name="cluster" class="form-control" placeholder="Cluster Name" required>
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "loop";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+$query = "SELECT * FROM clusters";
+$result = mysqli_query($conn, $query);
+    echo "<select class='form-control'>";
+    if($result->num_rows > 0) {
+        while($row1 = $result->fetch_assoc()) {
+            $c = $row1['cid'];
+            $d = $row1['cname'];
+            echo "<option value='$c'>$d</option>";
+        }
+    }
+    echo "</select>"
+?>
 </div>
 <div class="form-group">
 <label for="Phone">Place</label>
