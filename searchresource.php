@@ -81,6 +81,7 @@ Cluster<select name="cluster" id="cluster" class="select-css">
 <button class="btn btn-default">Search</button>
 </form>
 <?php
+ini_set( "display_errors", 0);
 $res = $_POST["mySearch"];
 $servername = "localhost";
 $username = "root";
