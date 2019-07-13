@@ -17,13 +17,9 @@
 <body>
 <?php
 session_start();
-$connection=mysql_connect("localhost","system","system");
+$connection=mysqli_connect("localhost","root","","loop");
 if(!$connection){
-die("database connection failed:".mysql_error());
-}
-$db_select=mysql_select_db("loop",$connection);
-if(!$db_select){
-die("database selection failed:".mysql_error());
+die("database connection failed:".mysqli_connect_error());
 }
 $uname=$pwd=$unameErr=$pwdErr=$Error=$sname=$snameErr=$email=$emailErr=$cpwd=$cpwdErr=$phno=$phnoErr=$state=$stateErr=$city=$cityErr=$mandal=$mandalErr=$pincode=$pincodeErr=$name=$nameErr="";
 $flag=0;
@@ -72,7 +68,7 @@ if(isset($_POST["submit"])){
 			$emailErr="Invalid Phone Number";
 			$flag=1;
 	}
-	
+
 		if(!preg_match("/^[a-z A-Z]+$/",$uname)){
 			$unameErr="Invalid Id";
 			$flag=1;
@@ -86,12 +82,12 @@ if(isset($_POST["submit"])){
 			$flag=1;
 		}
 	if($flag!=1){
-		mysql_query("insert into schools(sname,state,city,mandal,pincode) values('$sname','$state','$city','$mandal','$pincode')");
-		mysql_query("insert into users(uname,phone,email,password) values('$uname','$phno','$email','$pwd')");
+		mysqli_query($connection,"insert into schools(sname,state,city,mandal,pincode) values('$sname','$state','$city','$mandal','$pincode')");
+		mysqli_query($connection,"insert into users(uname,phone,email,password) values('$uname','$phno','$email','$pwd')");
 		echo "Success";
 	}
 }
-mysql_close($connection);
+mysqli_close($connection);
 ?>
 <div class="login_page">
 	<div class="form">

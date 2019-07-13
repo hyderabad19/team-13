@@ -17,13 +17,9 @@
 <body>
 <?php
 session_start();
-$connection=mysql_connect("localhost","system","system");
+$connection=mysqli_connect("localhost","root","","loop");
 if(!$connection){
-die("database connection failed:".mysql_error());
-}
-$db_select=mysql_select_db("loop",$connection);
-if(!$db_select){
-die("database selection failed:".mysql_error());
+die("database connection failed:".mysqli_connect_error());
 }
 $uname=$pwd=$unameErr=$pwdErr=$Error="";
 $flag=0;
@@ -42,13 +38,12 @@ if(isset($_POST["submit"])){
 			$flag=1;
 		}
 	if($flag!=1){
-		//header('login.html');
-		$result=mysql_query("select * from users where uname='$uname'",$connection);
+		$result=mysqli_query($connection,"select * from users where uname='$uname'");
 		if(!$result){
 		echo "error";
 		}
 		else{
-		$row=mysql_fetch_array($result);
+		$row=mysqli_fetch_array($result);
 		if(empty($row))
 			$Error="Incorrect UserName or Password!!";
 		else{
@@ -63,7 +58,7 @@ if(isset($_POST["submit"])){
 		}
 	}
 }
-mysql_close($connection);
+mysqli_close($connection);
 ?>
 <div class="login_page">
 	<div class="form">
