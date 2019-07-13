@@ -44,24 +44,12 @@ if(isset($_POST["submit"])){
 		$nameErr="Invalid Name";
 		$flag=1;
 	}
-	/*if(!preg_match("/^[A-Z a-z ]+[a-z]$/",$state)){
-		$stateErr="Invalid State";
-		$flag=1;
-	}
-	if(!preg_match("/^[A-Z][a-z ]+[a-z]$/",$city)){
-		$nameErr="Invalid City";
-		$flag=1;
-	}
-	if(!preg_match("/^[A-Z][a-z ]+[a-z]$/",$mandal)){
-		$nameErr="Invalid Mandal";
-		$flag=1;
-	}*/
 	if(!preg_match("/^[0-9]{6}$/",$pincode)){
 		$nameErr="Invalid Pincode";
 		$flag=1;
 	}
 	if(!preg_match("/^[a-zA-Z0-9][a-zA-Z0-9]+[@](gmail.com|yahoo.com)$/",$email)){
-			$emailErr="Invalid email";
+			$emailErr="Invalid Email";
 			$flag=1;
 		}
 	if(!preg_match("/[0-9]{10}/",$phno)){
@@ -70,7 +58,7 @@ if(isset($_POST["submit"])){
 	}
 
 		if(!preg_match("/^[a-z A-Z]+$/",$uname)){
-			$unameErr="Invalid Id";
+			$unameErr="Invalid Username";
 			$flag=1;
 		}
 		if(!preg_match("/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[.@$&_])/",$pwd)){

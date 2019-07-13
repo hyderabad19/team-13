@@ -31,7 +31,7 @@ if(isset($_POST["submit"])){
 	$unameErr="";
 	$pwdError="";
 		if(!preg_match("/^[a-z A-Z]+$/",$uname)){
-			$unameErr="Invalid Id";
+			$unameErr="Invalid Username";
 			$flag=1;
 		}
 		if(!preg_match("/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[.@$&_])/",$pwd)){
@@ -53,11 +53,32 @@ if(isset($_POST["submit"])){
 				$flag1=1;
 			}
 		}
-		}
 		if($flag1!=1){
 		header("Location:loop.html");
 		}
+		else{
+			$result=mysqli_query($connection,"select * from managers where muname='$uname'");
+		if(!$result){
+		echo "error";
+		}
+		else{
+			$flag2=0;
+		$row=mysqli_fetch_array($result);
+		if(empty($row))
+			$Error="Incorrect UserName or Password!!";
+		else{
+			if($row['password']!=$pwd||$row['uname']!=$uname){
+				$Error="Incorrect UserName or Password!!";
+				$flag2=1;
+			}
+		}
+		if($flag2!=1){
+		header("Location:schoolmng.html");
+		}
+		}
+		}
 	}
+}
 }
 mysqli_close($connection);
 ?>
