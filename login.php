@@ -16,14 +16,24 @@
 </head>
 <body>
 <?php
+session_start();
+$connection=mysql_connect("localhost","system","system");
+if(!$connection){
+die("database connection failed:".mysql_error());
+}
+$db_select=mysql_select_db("loop",$connection);
+if(!$db_select){
+die("database selection failed:".mysql_error());
+}
 $uname=$pwd=$unameErr=$pwdErr=$Error="";
 $flag=0;
+$flag1=0;
 if(isset($_POST["submit"])){
 	$uname=$_POST["uname"];
 	$pwd=$_POST["pwd"];
 	$unameErr="";
 	$pwdError="";
-		if(!preg_match("/^[0-9]*[0-9]$/",$uname)){
+		if(!preg_match("/^[a-z A-Z]+$/",$uname)){
 			$unameErr="Invalid Id";
 			$flag=1;
 		}
@@ -33,10 +43,27 @@ if(isset($_POST["submit"])){
 		}
 	if($flag!=1){
 		//header('login.html');
+		$result=mysql_query("select * from users where uname='$uname'",$connection);
+		if(!$result){
+		echo "error";
+		}
+		else{
+		$row=mysql_fetch_array($result);
+		if(empty($row))
+			$Error="Incorrect UserName or Password!!";
+		else{
+			if($row['password']!=$pwd||$row['uname']!=$uname){
+				$Error="Incorrect UserName or Password!!";
+				$flag1=1;
+			}
+		}
+		}
+		if($flag1!=1){
 		echo "Success";
+		}
 	}
 }
-//mysql_close($connection);
+mysql_close($connection);
 ?>
 <div class="login_page">
 	<div class="form">
