@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Login</title>
+	<title>Register</title>
 	<link rel="stylesheet" type="text/css" href="login_style.css">
 	<style type="text/css">
 		.id{
@@ -16,29 +16,64 @@
 </head>
 <body>
 <?php
-$uname=$pwd=$unameErr=$pwdErr=$Error=$sname=$snameErr=$loc=$locErr=$email=$emailErr=$cpwd=$cpwdErr="";
+session_start();
+$connection=mysql_connect("localhost","system","system");
+if(!$connection){
+die("database connection failed:".mysql_error());
+}
+$db_select=mysql_select_db("loop",$connection);
+if(!$db_select){
+die("database selection failed:".mysql_error());
+}
+$uname=$pwd=$unameErr=$pwdErr=$Error=$sname=$snameErr=$email=$emailErr=$cpwd=$cpwdErr=$phno=$phnoErr=$state=$stateErr=$city=$cityErr=$mandal=$mandalErr=$pincode=$pincodeErr=$name=$nameErr="";
+$flag=0;
 $flag=0;
 if(isset($_POST["submit"])){
 	$uname=$_POST["uname"];
 	$pwd=$_POST["pwd"];
 	$sname=$_POST["sname"];
 	$email=$_POST["email"];
-	$loc=$_POST["loc"];
 	$cpwd=$_POST["cpwd"];
+	$state=$_POST["state"];
+	$city=$_POST["city"];
+	$mandal=$_POST["mandal"];
+	$pincode=$_POST["pincode"];
+	$name=$_POST["name"];
+	$phno=$_POST["phno"];
 	if(!preg_match("/^[A-Z][a-z ]+[a-z]$/",$sname)){
 		$snameErr="Invalid School Name";
 		$flag=1;
 	}
-	if(!preg_match("/^[a-zA-Z0-9][a-zA-Z0-9]+[@](gmail.com|yahoo.com|cbit.ac.in)$/",$email)){
-			$emailErr="Invalid Location";
-			$flag=1;
-		}
-	if(!preg_match("/^[A-Z][a-z ]+[a-z]$/",$loc)){
-		$locErr="Invalid Location";
+	if(!preg_match("/^[A-Z][a-z ]+[a-z]$/",$name)){
+		$nameErr="Invalid Name";
 		$flag=1;
 	}
+	/*if(!preg_match("/^[A-Z a-z ]+[a-z]$/",$state)){
+		$stateErr="Invalid State";
+		$flag=1;
+	}
+	if(!preg_match("/^[A-Z][a-z ]+[a-z]$/",$city)){
+		$nameErr="Invalid City";
+		$flag=1;
+	}
+	if(!preg_match("/^[A-Z][a-z ]+[a-z]$/",$mandal)){
+		$nameErr="Invalid Mandal";
+		$flag=1;
+	}*/
+	if(!preg_match("/^[0-9]{6}$/",$pincode)){
+		$nameErr="Invalid Pincode";
+		$flag=1;
+	}
+	if(!preg_match("/^[a-zA-Z0-9][a-zA-Z0-9]+[@](gmail.com|yahoo.com)$/",$email)){
+			$emailErr="Invalid email";
+			$flag=1;
+		}
+	if(!preg_match("/[0-9]{10}/",$phno)){
+			$emailErr="Invalid Phone Number";
+			$flag=1;
+	}
 	
-		if(!preg_match("/^[0-9]*[0-9]$/",$uname)){
+		if(!preg_match("/^[a-z A-Z]+$/",$uname)){
 			$unameErr="Invalid Id";
 			$flag=1;
 		}
@@ -51,9 +86,12 @@ if(isset($_POST["submit"])){
 			$flag=1;
 		}
 	if($flag!=1){
-		echo "Successful";
+		mysql_query("insert into schools(sname,state,city,mandal,pincode) values('$sname','$state','$city','$mandal','$pincode')");
+		mysql_query("insert into users(uname,phone,email,password) values('$uname','$phno','$email','$pwd')");
+		echo "Success";
 	}
 }
+mysql_close($connection);
 ?>
 <div class="login_page">
 	<div class="form">
@@ -62,12 +100,33 @@ if(isset($_POST["submit"])){
 			<input type="text" name="sname" placeholder="Name" required="" class="sname" value="<?php echo $sname;?>">
 			<label class="error"><?php echo $snameErr;?></label>
 			<br/><br/>
-			<label>Enter School Email*</label>
+	<label>Enter State*</label>
+			<input type="text" name="state" placeholder="State" required="" class="state" value="<?php echo $state;?>">
+			<label class="error"><?php echo $stateErr;?></label>
+			<br/><br/>
+			<label>Enter City*</label>
+			<input type="text" name="city" placeholder="City" required="" class="city" value="<?php echo $city;?>">
+			<label class="error"><?php echo $cityErr;?></label>
+			<br/><br/>
+			<label>Enter Mandal*</label>
+			<input type="text" name="mandal" placeholder="Mandal" required="" class="mandal" value="<?php echo $mandal;?>">
+			<label class="error"><?php echo $mandalErr;?></label>
+			<br/><br/>
+			<label>Enter Pincode*</label>
+			<input type="text" name="pincode" placeholder="Pincode" required="" class="pincode" value="<?php echo $pincode;?>">
+			<label class="error"><?php echo $pincodeErr;?></label>
+			<br/><br/>
+			<label>Enter Name*</label>
+			<input type="text" name="name" placeholder="Name" required="" class="name" value="<?php echo $name;?>">
+			<label class="error"><?php echo $nameErr;?></label>
+			<br/><br/>
+			<label>Enter Email*</label>
 			<input type="email" placeholder ="Email ID" name="email" required="" value="<?php echo $email?>"><br>
 			<label class="error"><?php echo $emailErr;?></label>
-			<label>Enter School Location*</label>
-			<input type="text" placeholder="Location" name="loc" required="" value="<?php echo $loc;?>"><br>
-			<label class="error"><?php echo $locErr;?></label>
+			<br><br>
+			<label>Enter Phone Number*</label>
+			<input type="text" placeholder="Phone Number" name="phno" required="" value="<?php echo $phno;?>"><br>
+			<label class="error"><?php echo $phnoErr;?></label>
 		<label>Enter Username*</label>
 		<input type="uname" placeholder ="Username" id="uname" name="uname" required="" value="<?php echo $uname;?>">
 		<label class="error"><?php echo $unameErr;?></label>
