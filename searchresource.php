@@ -97,6 +97,7 @@ if ($result->num_rows > 0) {
         <th>Resource Capacity</th>
         <th>Available from</th>
         <th>Available till</th>
+        <th>Book</th>
       </tr>';
     while($row = $result->fetch_assoc()) {
             $field1name = $row["type"];
@@ -108,6 +109,22 @@ if ($result->num_rows > 0) {
                   <td>'.$field2name.'</td> 
                   <td>'.$field3name.'</td> 
                   <td>'.$field4name.'</td> 
+                  <td><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Book Resource</button><div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Conformation</h4>
+        </div>
+        <div class="modal-body">
+          <p>Resource Booked Successfully.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div></td>
               </tr>';
           }
     echo '</table';
