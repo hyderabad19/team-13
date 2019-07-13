@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>Login</title>
+	<link rel="stylesheet" type="text/css" href="login_style.css">
+	<style type="text/css">
+		.id{
+			font-family: "Roboto", sans-serif;
+			font-size: 14px;
+			background-color: blue;
+		}
+	</style>
+</head>
+<body>
+<div class="login_page">
+	<div class="form">
+		<form name="register" method="post" class="register" action="signup.php">
+			<label>Enter School Name*</label>
+			<input type="text" name="name" placeholder="Name">
+			<label>Enter School Email*</label>
+			<input type="email" placeholder ="Email ID" name="email" required=""><br>
+			<label>Enter School Location*</label>
+			<input type="text" placeholder="Location" name="location" required=""><br>
+			<label>Enter Password*</label>
+			<input type="password" placeholder ="Password" name="password" required=""><br>
+			<p style="color: white;font-size:12px">Password should contain atleast one lowercase,one uppercase and one digit with min 8 characters</p>
+			<label>Retype Password*</label>
+			<input type="password" placeholder="Retype Password" name="retypepassword" required=""><br>
+			<br><br>
+			<input type="submit" value="Create" name="submit" id="redirect" onclick="signup()" class="id" style="background-color: rgba(0,0,0,0.4); font-size: 20px;color: white">
+				<p class="message" style="color: white" >Already Registered?<a href="#" style="color: white">Login</a></p>
+	</form>
+	<form class="login" name="login" method="post" action="signin.php" >
+		<label>Enter Email*</label>
+		<input type="email" placeholder ="Email ID" id="semailid" name="email" required=""><br><br>
+		<label>Enter Password*</label>
+		<input type="password" placeholder ="Password" id="spwd" name="password" required=""><br><br>
+		<input type="submit" value="Login" onclick="signin()" class="id" name="submit" style="background-color: rgba(0,0,0,0.4); font-size: 20px;color: white" >
+		<p class="message" style="color: white">Not Registered?<a href="#" style="color: white" >Register</a></p>
+	</form>
+</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+$('#redirect').on('click', function() { window.location = 'details.html'; });
+</script>
+<script>
+	
+	$('.message a').click(function(){
+
+		$('form').animate({height:"toggle", opacity:"toggle"})
+
+	});
+
+	
+</script>
+</body>
+</html>
