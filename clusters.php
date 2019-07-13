@@ -17,10 +17,10 @@
 <br>
 <input type="submit" name="update" value="Create">
 <br>
-<input type="submit" name="Show Clusters" value="Show Clusters">
+<input type="submit" name="ShowClusters" value="Show Clusters">
 </form>
 <?php
-    if (isset($_POST['Show Clusters'])) {
+    if (isset($_POST['ShowClusters'])) {
 
       $con=mysqli_connect("localhost","root","","loop");
       // Check connection
@@ -62,7 +62,7 @@
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
 
-  $sql = "INSERT INTO clusters (cname,mandal,state) VALUES ($name,$mant,$st) ";
+  $sql = "INSERT INTO clusters (cname,mandal,state) VALUES ('$name','$mant','$st') ";
 
 if (mysqli_query($con, $sql)) {
     echo "New record created successfully";
