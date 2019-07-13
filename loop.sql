@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.9
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 13, 2019 at 07:39 PM
--- Server version: 10.1.31-MariaDB
--- PHP Version: 7.2.3
+-- Generation Time: Jul 13, 2019 at 10:00 PM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,68 +25,17 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `available`
---
-
-CREATE TABLE `available` (
-  `aid` int(11) NOT NULL,
-  `rid` int(11) NOT NULL,
-  `fromtime` datetime NOT NULL,
-  `totime` datetime NOT NULL,
-  `isavailable` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `bookings`
 --
 
 CREATE TABLE `bookings` (
   `bid` int(11) NOT NULL,
+  `rid` int(11) NOT NULL,
   `usedby` int(11) NOT NULL,
-  `providedby` int(11) NOT NULL,
-  `starttime` datetime NOT NULL,
-  `endtime` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `feedback`
---
-
-CREATE TABLE `feedback` (
-  `fid` int(11) NOT NULL,
-  `bid` int(11) NOT NULL,
-  `user` varchar(500) NOT NULL,
-  `provider` varchar(500) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `human_resources`
---
-
-CREATE TABLE `human_resources` (
-  `rid` int(11) NOT NULL,
-  `sid` int(11) NOT NULL,
-  `tname` varchar(200) NOT NULL,
-  `subject` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `material_resource`
---
-
-CREATE TABLE `material_resource` (
-  `rid` int(11) NOT NULL,
-  `sid` int(11) NOT NULL,
-  `type` varchar(200) NOT NULL,
-  `capacity` int(11) NOT NULL
+  `start_time` datetime NOT NULL,
+  `end_time` datetime NOT NULL,
+  `user_comment` varchar(500) NOT NULL,
+  `provider_comment` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -118,10 +67,10 @@ CREATE TABLE `schools` (
 
 CREATE TABLE `users` (
   `uid` int(11) NOT NULL,
+  `password` varchar(200) NOT NULL,
   `uname` varchar(200) NOT NULL,
-  `phone` int(10) NOT NULL,
+  `phone` varchar(10) NOT NULL,
   `email` varchar(200) NOT NULL,
-  `password` varchar(20) NOT NULL,
   `sid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -130,34 +79,10 @@ CREATE TABLE `users` (
 --
 
 --
--- Indexes for table `available`
---
-ALTER TABLE `available`
-  ADD PRIMARY KEY (`aid`);
-
---
 -- Indexes for table `bookings`
 --
 ALTER TABLE `bookings`
   ADD PRIMARY KEY (`bid`);
-
---
--- Indexes for table `feedback`
---
-ALTER TABLE `feedback`
-  ADD PRIMARY KEY (`fid`);
-
---
--- Indexes for table `human_resources`
---
-ALTER TABLE `human_resources`
-  ADD PRIMARY KEY (`rid`);
-
---
--- Indexes for table `material_resource`
---
-ALTER TABLE `material_resource`
-  ADD PRIMARY KEY (`rid`);
 
 --
 -- Indexes for table `schools`
@@ -178,28 +103,10 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `available`
---
-ALTER TABLE `available`
-  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
   MODIFY `bid` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `feedback`
---
-ALTER TABLE `feedback`
-  MODIFY `fid` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `human_resources`
---
-ALTER TABLE `human_resources`
-  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `schools`
