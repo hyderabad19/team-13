@@ -26,42 +26,19 @@
 <div class="container">
 <div class="row">
 <div class="col-md-8">
-<h1>Add Cluster Event</h1>
-<form name="contact-form" action="addedEvent.php" method="post" id="contact-form">
+<h1>Add a Cluster</h1>
+<form name="contact-form" action="addedCluster.php" method="post" id="contact-form">
 <div class="form-group">
-<label for="Name">Agenda</label>
-<input type="text" class="form-control" name="agenda" placeholder="Name" required>
+<label for="Name">Name</label>
+<input type="text" class="form-control" name="name" placeholder="Name" required>
 </div>
 <div class="form-group">
-<label for="exampleInputEmail1">Cluster</label>
-<?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "loop";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
-$query = "SELECT * FROM clusters";
-$result = mysqli_query($conn, $query);
-    echo "<select class='form-control'>";
-    if($result->num_rows > 0) {
-        while($row1 = $result->fetch_assoc()) {
-          	$c = $row1['cid'];
-            $d = $row1['cname'];
-            echo "<option value='$c'>$d</option>";
-        }
-    }
-    echo "</select>"
-?>
+<label for="FROM TIME">Mandal</label>
+<input type="text" name="mandal" class="form-control" required>
 </div>
 <div class="form-group">
-<label for="Phone">Place</label>
-<input type="text" name="place" class="form-control" placeholder="Place" required>
+<label for="TO TIME">State</label>
+<input type="text" name="state" class="form-control" required>
 </div>
 
 <button type="submit" class="btn btn-primary" name="submit" value="Submit" id="submit_form">Submit</button>
