@@ -54,7 +54,7 @@ if(isset($_POST["submit"])){
 		}
 		}
 		if($flag1!=1){
-		echo "Success";
+		header("Location:loop.html");
 		}
 	}
 }
