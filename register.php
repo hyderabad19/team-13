@@ -84,7 +84,7 @@ if(isset($_POST["submit"])){
 	if($flag!=1){
 		mysqli_query($connection,"insert into schools(sname,state,city,mandal,pincode) values('$sname','$state','$city','$mandal','$pincode')");
 		mysqli_query($connection,"insert into users(uname,phone,email,password) values('$uname','$phno','$email','$pwd')");
-		echo "Success";
+		header('Location:loop.html');
 	}
 }
 mysqli_close($connection);

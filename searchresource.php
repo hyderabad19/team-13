@@ -65,12 +65,19 @@ tr:nth-child(even) {
 
 <h3>Search for Resource</h3>
 <form method="post">
-<select name="mySearch" id="mySearch" class="select-css">
+Resource<select name="mySearch" id="mySearch" class="select-css">
   <option value="library">library</option>
   <option value="playground">Playground</option>
   <option value="computerlab">computerlab</option>
 </select><br><br>
 
+Cluster<select name="cluster" id="cluster" class="select-css">
+  <option value="moon">Moon</option>
+  <option value="venus">Venus</option>
+  <option value="mars">Mars</option>
+</select><br><br>
+
+<input type="text" name="range" id="range"/><br><br>
 <button class="btn btn-default">Search</button>
 </form>
 <?php

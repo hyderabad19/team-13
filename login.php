@@ -4,6 +4,7 @@
 	<title>Login</title>
 	<link rel="stylesheet" type="text/css" href="login_style.css">
 	<style type="text/css">
+
 		.id{
 			font-family: "Roboto", sans-serif;
 			font-size: 14px;
@@ -54,7 +55,7 @@ if(isset($_POST["submit"])){
 		}
 		}
 		if($flag1!=1){
-		echo "Success";
+		header("Location:loop.html");
 		}
 	}
 }
