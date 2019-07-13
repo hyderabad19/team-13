@@ -7,40 +7,54 @@
   <body>
 <form method="post">
 <label for="cluster">Create CLuster:</label>
-<input type="cname" name="clustername">
+<input type="text" name="clustername">
 <br>
-<input type="submit" name="update" value="Publish">
+<label for="mandal">Cluster Region:</label>
+<input type="text" name="region">
 <br>
-<input type="submit" name="Show Clusters" value="Save">
+<label for="state">state:</label>
+<input type="text" name="state">
+<br>
+<input type="submit" name="update" value="Create">
+<br>
+<input type="submit" name="Show Clusters" value="Show Clusters">
 </form>
 <?php
-    if (isset($_POST['update'])) {
-      $name=$_POST['clustername']
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "loop";
+    if (isset($_POST['Show Clusters'])) {
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+      $con=mysqli_connect("localhost","root","","loop");
+      // Check connection
+      if (mysqli_connect_errno())
+      {
+      echo "Failed to connect to MySQL: " . mysqli_connect_error();
+      }
 
-$sql = "INSERT INTO clusters VALUES ($name)";
+      $result = mysqli_query($con,"SELECT * FROM clusters");
 
-if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
-} else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-}
+      echo "<table border='1'>
+      <tr>
+      <th>cluster name</th>
+      <th>Mandal</th>
+      </tr>";
 
-$conn->close();
+      while($row = mysqli_fetch_array($result))
+      {
+      echo "<tr>";
+      echo "<td>" . $row['cname'] . "</td>";
+      echo "<td>" . $row['mandal'] . "</td>";
+      echo "</tr>";
+      }
+      echo "</table>";
 
+      mysqli_close($con);
 
     }
-    elseif (isset($_POST['Show clusters'])) {
+    elseif (isset($_POST['update'])) {
+      $name=$_POST['clustername'];
+      $mant=$_POST['region'];
+      $st=$_POST['state'];
+      echo "$name";
+      echo "$mant";
   $con=mysqli_connect("localhost","root","","loop");
   // Check connection
   if (mysqli_connect_errno())
@@ -48,24 +62,15 @@ $conn->close();
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
 
-  $result = mysqli_query($con,"SELECT * FROM clusters");
+  $sql = "INSERT INTO clusters (cname,mandal,state) VALUES ($name,$mant,$st) ";
 
-  echo "<table border='1'>
-  <tr>
-  <th>cluster name</th>
-  <th>Mandal name</th>
-  </tr>";
+if (mysqli_query($con, $sql)) {
+    echo "New record created successfully";
+} else {
+    echo "Error: " . $sql . "<br>" . mysqli_error($con);
+}
 
-  while($row = mysqli_fetch_array($result))
-  {
-  echo "<tr>";
-  echo "<td>" . $row['cname'] . "</td>";
-  echo "<td>".$row['mandal']."</td>";
-  echo "</tr>";
-  }
-  echo "</table>";
-
-  mysqli_close($con);
+mysqli_close($con);
 
     }
 ?>
