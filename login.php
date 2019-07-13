@@ -61,8 +61,8 @@ if(isset($_POST["submit"])){
 }
 mysqli_close($connection);
 ?>
-<div class="login_page">
-	<div class="form">
+<div class="login_page" >
+	<div class="form" style="background: #031842">
 	<form class="login" name="login" method="POST">
 		<label>Enter Username*</label>
 		<input type="uname" placeholder ="Username" id="uname" name="uname" required="" value="<?php echo $uname;?>">
@@ -80,5 +80,7 @@ mysqli_close($connection);
 </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="particles.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
