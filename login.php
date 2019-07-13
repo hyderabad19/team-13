@@ -16,14 +16,20 @@
 </head>
 <body>
 <?php
+session_start();
+$connection=mysqli_connect("localhost","root","","loop");
+if(!$connection){
+die("database connection failed:".mysqli_connect_error());
+}
 $uname=$pwd=$unameErr=$pwdErr=$Error="";
 $flag=0;
+$flag1=0;
 if(isset($_POST["submit"])){
 	$uname=$_POST["uname"];
 	$pwd=$_POST["pwd"];
 	$unameErr="";
 	$pwdError="";
-		if(!preg_match("/^[0-9]*[0-9]$/",$uname)){
+		if(!preg_match("/^[a-z A-Z]+$/",$uname)){
 			$unameErr="Invalid Id";
 			$flag=1;
 		}
@@ -32,11 +38,27 @@ if(isset($_POST["submit"])){
 			$flag=1;
 		}
 	if($flag!=1){
-		//header('login.html');
-		echo "Success";
+		$result=mysqli_query($connection,"select * from users where uname='$uname'");
+		if(!$result){
+		echo "error";
+		}
+		else{
+		$row=mysqli_fetch_array($result);
+		if(empty($row))
+			$Error="Incorrect UserName or Password!!";
+		else{
+			if($row['password']!=$pwd||$row['uname']!=$uname){
+				$Error="Incorrect UserName or Password!!";
+				$flag1=1;
+			}
+		}
+		}
+		if($flag1!=1){
+		header("Location:loop.html");
+		}
 	}
 }
-//mysql_close($connection);
+mysqli_close($connection);
 ?>
 <div class="login_page">
 	<div class="form">
