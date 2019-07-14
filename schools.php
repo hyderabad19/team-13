@@ -77,15 +77,15 @@ tr:nth-child(even) {
 						<ul class="nav navbar-nav ">
 							<li ><a href="loop.php">HOME</a></li>
 							<li ><a href="clusters.php">CLUSTERS</a></li>
-							<li ><a href="schools.html">SCHOOLS</a></li>
-							<li ><a href="resource.html">RESOURCE</a></li>
-							<li ><a href="event.html">EVENTS</a></li>
+							<li ><a href="schools.php">SCHOOLS</a></li>
+							<li ><a href="resource.php">RESOURCE</a></li>
+							<li ><a href="event.php">EVENTS</a></li>
 						</ul>
 					</div>
 				</div>
 			</div>
 		</header>
-<h3>Lists of Clusters</h3>
+<h3>Loop's Schools</h3>
 
 <?php
 ini_set( "display_errors", 0);
