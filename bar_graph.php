@@ -13,12 +13,12 @@
                             )
                         );
     	
-        $handle = $link->prepare('select rid, usedby from bookings'); 
+        $handle = $link->prepare('select rname, usedby from bookings'); 
         $handle->execute(); 
         $result = $handle->fetchAll(\PDO::FETCH_OBJ);
     		
         foreach($result as $row){
-            array_push($dataPoints, array("x"=> $row->rid, "y"=> $row->usedby));
+            array_push($dataPoints, array("y"=> $row->usedby, "label"=> $row->rname));
         }
     	$link = null;
     }
@@ -38,10 +38,10 @@
     	exportEnabled: true,
     	theme: "light1", 
     	title:{
-    		text: "Resource - User Graph"
+    		text: "Resource - Usage Graph"
     	},
     	data: [{
-    		type: "pie", //change type to column,bar, line, area, pie, etc  
+    		type: "column", //change type to column,bar, line, area, pie, etc  
     		dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
     	}]
     });
@@ -51,7 +51,10 @@
     </script>
     </head>
     <body>
-    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+	<br><br><br><br>
+	<center>
+    <div id="chartContainer" style="height: 370px; width: 70%;"></div>
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+	</center>
     </body>
     </html>                              
