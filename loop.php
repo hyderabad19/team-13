@@ -18,6 +18,7 @@
 					<div class="main-menu">
 						<ul class="nav navbar-nav ">
 							<li ><a href="loop.php">HOME</a></li>
+							<li ><a href="login.php">LOGIN</a></li>
 							<li ><a href="clusters.php">CLUSTERS</a></li>
 							<li ><a href="schools.php">SCHOOLS</a></li>
 							<li ><a href="reports.php">REPORTS</a></li>
