@@ -17,31 +17,21 @@
 					</div>
 					<div class="main-menu">
 						<ul class="nav navbar-nav ">
-							<li ><a href="loop.html">HOME</a></li>
-							<li ><a href="login.php">Login</a></li>
-							<li ><a href="register.php">Register</a></li>
+							<li ><a href="loop.php">HOME</a></li>
 							<li ><a href="clusters.php">CLUSTERS</a></li>
-							<li ><a href="schools.html">SCHOOLS</a></li>
-							<li ><a href="resource.html">RESOURCE</a></li>
-							<li ><a href="event.html">EVENTS</a></li>
-							<div class="header-search">
-								<input class="form-control input-secondary" type="text" name="search" placeholder="Search..." >
-								<button class="btn btn-primary" type="search">SEARCH</button>
-							</div>
+							<li ><a href="schools.php">SCHOOLS</a></li>
+							<li ><a href="reports.php">REPORTS</a></li>
+							<li ><a href="resource.php">RESOURCE</a></li>
+							<li ><a href="event.php">EVENTS</a></li>
 						</ul>
 					</div>
 				</div>
 			</div>
 		</header>
 		<div class="content-main-wrapper">
-				<div class="w3-content w3-section" style="max-width:500px"></div>
-						<h1 align=center>education is right</h1>
-				</div>
-				     
-						<img  src="images/img1.png" style="width:100%" >
-					
-
-			</div>
+			<div class="w3-content w3-section" style="max-width:500px"></div>
+			<h1 align=center>education is right</h1>
+			<img  src="images/img1.png" style="width:100%" >
 			<div class="content-main-wrapper1">
 			<div class="container1">
 			<div class="content-wrapper1">

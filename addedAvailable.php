@@ -19,6 +19,6 @@ $sql = "insert into available_resources(sid, rname, fromtime, totime)
 VALUES ('1', '$rname', '$fromtime', '$totime')";
 
 if ($conn->query($sql)) {
-    header("Location:addAvailable.php");
+    header("Location:loop.php");
 }
 ?>

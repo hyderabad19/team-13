@@ -19,6 +19,6 @@ $sql = "insert into clusters(cname, mandal, state)
 VALUES ('$cname', '$mandal', '$state')";
 
 if ($conn->query($sql)) {
-    header("Location:addCluster.php");
+    header("Location:loop.php");
 }
 ?>

@@ -90,7 +90,7 @@ if(isset($_POST["submit"])){
 mysqli_close($connection);
 ?>
 <div class="login_page">
-	<div class="form">
+	<div class="form" style="background: #031842">
 	<form class="login" name="login" method="POST">
 	<label>Enter School Name*</label>
 			<input type="text" name="sname" placeholder="Name" required="" class="sname" value="<?php echo $sname;?>">
@@ -138,7 +138,6 @@ mysqli_close($connection);
 		<input type="submit" value="submit" class="id" name="submit" style="background-color: rgba(0,0,0,0.4); font-size: 20px;color: white" >
 		<br><br>
 		<label class="error"><?php echo $Error;?></label>
-		<p class="message" style="color: white">Not Registered?<a href="register.php" style="color: white" >Register</a></p>
 	</form>
 </div>
 </div>

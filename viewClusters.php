@@ -5,6 +5,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="styletemp.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <style type="text/css">
@@ -62,44 +66,27 @@ tr:nth-child(even) {
   </style>
 </head>
 <body>
+<div class="container-main-wrapper">
+		<header class="header-wrapper">
+			<div class="container">
+				<div class="header-menu-wrapper" >
+					<div class="brand-logo">
+						<img class="img-responsive" src="images/loop.png" alt="image">
+					</div>
+					<div class="main-menu">
+						<ul class="nav navbar-nav ">
+							<li ><a href="loop.php">HOME</a></li>
+							<li ><a href="clusters.php">CLUSTERS</a></li>
+							<li ><a href="schools.html">SCHOOLS</a></li>
+							<li ><a href="resource.html">RESOURCE</a></li>
+							<li ><a href="event.html">EVENTS</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</header>
+<h3>Lists of Clusters</h3>
 
-<h3>Search for Resource</h3>
-<form method="post" style="margin-left:20px">
-Resource<select name="mySearch" id="mySearch" class="select-css">
-  <option value="library">library</option>
-  <option value="playground">Playground</option>
-  <option value="computerlab">computerlab</option>
-  <option value="maths">Maths</option>
-</select><br><br>
-
-<?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "loop";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
-$query = "SELECT * FROM clusters";
-$result = mysqli_query($conn, $query);
-    echo "Cluster<select name='cluster' id='cluster' class='select-css'>";
-    if($result->num_rows > 0) {
-        while($row1 = $result->fetch_assoc()) {
-          	$c = $row1['cid'];
-            $d = $row1['cname'];
-            echo "<option value='$c'>$d</option>";
-        }
-    }
-    echo "</select>";
-?>
-<br><br>
-Range<input type="text" name="range" id="range" class='select-css'/><br><br>
-<button class="btn btn-default">Search</button>
-</form>
 <?php
 ini_set( "display_errors", 0);
 $res = $_POST["mySearch"];
@@ -115,44 +102,24 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-$sql = "SELECT * FROM available_resources where rname='$res'";
+$sql = "SELECT * FROM clusters";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
   echo '<table border="1" cellspacing="5" cellpadding="5" >
       <tr>
         
-        <th>Resource Name</th>
-        <th>Resource Capacity</th>
-        <th>Available from</th>
-        <th>Available till</th>
-        <th>Book</th>
+        <th>Name</th>
+        <th>Mandal</th>
+        <th>State</th>
       </tr>';
     while($row = $result->fetch_assoc()) {
-            $field1name = $row["rname"];
-            $field2name = $row["capacity"];
-            $field3name = $row["fromtime"];
-            $field4name = $row["totime"];
+            $field1name = $row["cname"];
+            $field2name = $row["mandal"];
+            $field3name = $row["state"];
             echo '<tr> 
                   <td>'.$field1name.'</td> 
                   <td>'.$field2name.'</td> 
                   <td>'.$field3name.'</td> 
-                  <td>'.$field4name.'</td> 
-                  <td><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Book Resource</button><div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Conformation</h4>
-        </div>
-        <div class="modal-body">
-          <p>Resource Booked Successfully.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div></td>
               </tr>';
           }
     echo '</table';
@@ -162,6 +129,7 @@ if ($result->num_rows > 0) {
 
 $conn->close();
 ?> 
+
 
 </body>
 </html>

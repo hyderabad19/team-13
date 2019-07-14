@@ -55,13 +55,13 @@ if(isset($_POST["submit"])){
 		}
 		}
 		if($flag1!=1){
-		header("Location:loop.html");
+		header("Location:loop.php");
 		}
 	}
 }
 mysqli_close($connection);
 ?>
-<div class="login_page" >
+<div class="login_page">
 	<div class="form" style="background: #031842">
 	<form class="login" name="login" method="POST">
 		<label>Enter Username*</label>
