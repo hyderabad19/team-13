@@ -17,13 +17,8 @@
 					</div>
 					<div class="main-menu">
 						<ul class="nav navbar-nav ">
-							<li ><a href="loop.php">HOME</a></li>
-							<li ><a href="login.php">LOGIN</a></li>
-							<li ><a href="clusters.php">CLUSTERS</a></li>
-							<li ><a href="schools.php">SCHOOLS</a></li>
-							<li ><a href="reports.php">REPORTS</a></li>
-							<li ><a href="resource.php">RESOURCE</a></li>
-							<li ><a href="event.php">EVENTS</a></li>
+							<li ><a href="home.php">Home</a></li>
+							<li ><a href="login.php">Login</a></li>
 						</ul>
 					</div>
 				</div>
