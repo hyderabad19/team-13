@@ -19,6 +19,6 @@ $sql = "insert into events(cid, agenda, place)
 VALUES ('1', '$agenda', '$place')";
 
 if ($conn->query($sql)) {
-    header("Location:addEvent.php");
+    header("Location:loop.php");
 }
 ?>
