@@ -21,7 +21,7 @@
 							<li ><a href="login.php">LOGIN</a></li>
 							<li ><a href="clusters.php">CLUSTERS</a></li>
 							<li ><a href="schools.php">SCHOOLS</a></li>
-							<li ><a href="reports.php">REPORTS</a></li>
+							<li ><a href="bar_graph.php">REPORTS</a></li>
 							<li ><a href="resource.php">RESOURCE</a></li>
 							<li ><a href="event.php">EVENTS</a></li>
 						</ul>
