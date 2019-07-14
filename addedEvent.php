@@ -13,9 +13,9 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
-} 
-		
-$sql = "insert into events(cid, agenda, place) 
+}
+
+$sql = "insert into events(cid, agenda, place)
 VALUES ('1', '$agenda', '$place')";
 
 if ($conn->query($sql)) {
