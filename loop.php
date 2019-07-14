@@ -79,7 +79,7 @@
 							<i class="fab fa-facebook"></i>
 							<i class="fab fa-instagram"></i>
 						</div>
-							 
+
 					</div>
 			</div>
 			<div class="footer-copy">

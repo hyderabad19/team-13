@@ -19,15 +19,11 @@
 					<div class="main-menu">
 						<ul class="nav navbar-nav ">
 							<li ><a href="loop.html">HOME</a></li>
-							<li ><a href="clusters.html">CLUSTERS</a></li>
+							<li ><a href="clusters.php">CLUSTERS</a></li>
 							<li ><a href="schools.html">SCHOOLS</a></li>
 							<li ><a href="resource.html">RESOURCE</a></li>
 							<li ><a href="event.html">EVENTS</a></li>
-							<li ><a href="report.html">REPORT</a></li>
-							<div class="header-search">
-								<input class="form-control input-secondary" type="text" name="search" placeholder="Search..." >
-								<button class="btn btn-primary" type="search">SEARCH</button>
-							</div>
+							
 						</ul>
 					</div>
 				</div>
